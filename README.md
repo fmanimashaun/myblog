@@ -89,6 +89,23 @@ cd myblog
 bundle install
 ```
 
+## Database Setup
+This application uses PostgreSQL as the database. Here are the steps to set it up:
+
+1. Ensure PostgreSQL is installed on your machine and running.
+
+2. Update the config/database.yml file with your PostgreSQL username and password in the default section.
+
+3. Create the database:
+```bash
+rails db:create
+```
+
+4. Run migrations to set up the database schema:
+```bash
+rails db:migrate
+```
+
 ### Usage
 
 To run the program, you can use a Ruby interpreter. For example, to interact with the code, use the following:
