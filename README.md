@@ -23,7 +23,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-## 📖 Catalog of My Things command-Line App <a name="about-project"></a>
+## 📖 Blog App <a name="about-project"></a>
 
 **The Blog app** is a classic example of a blog website designed by ruby on rails with a database by PostgreSQL. I have created a fully functional website that will show the list of posts and empower readers to interact with them by adding comments and liking posts.
 
