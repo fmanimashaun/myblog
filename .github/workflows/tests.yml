@@ -1,19 +1,36 @@
-name: Tests
+name: RSpec
 
-on: pull_request
+on: [push, pull_request]
 
 jobs:
-  rspec:
-    name: RSpec
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:13
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_database
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2.2
-          bundler-cache: true # 'bundle install' and caching are done automatically
-      - name: Setup RSpec
-        run: |
-          gem install --no-document rspec -v '>=3.0, < 4.0'
-      - name: RSpec Report
-        run: rspec --force-color --format documentation
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.2.2
+        bundler-cache: true
+
+    - name: Build and test with Rake
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: postgres://postgres:postgres@localhost/test_database
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        bundle exec rails db:create db:schema:load
+        bundle exec rspec
