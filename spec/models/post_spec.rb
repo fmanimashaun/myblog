@@ -64,9 +64,9 @@ RSpec.describe Post, type: :model do
 
   describe '#recent_comments' do
     let(:post) { create(:post) }
-    let!(:recent_comment) { create(:comment, post: post, created_at: 1.day.ago) }
-    let!(:old_comment) { create(:comment, post: post, created_at: 1.week.ago) }
-    let!(:older_comment) { create(:comment, post: post, created_at: 1.year.ago) }
+    let!(:recent_comment) { create(:comment, post:, created_at: 1.day.ago) }
+    let!(:old_comment) { create(:comment, post:, created_at: 1.week.ago) }
+    let!(:older_comment) { create(:comment, post:, created_at: 1.year.ago) }
 
     it 'returns the most recent comments' do
       expect(post.recent_comments.to_a).to eq([recent_comment, old_comment, older_comment])
