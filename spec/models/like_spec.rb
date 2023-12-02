@@ -1,5 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { create(:user) }
+  let(:post) { create(:post) }
+  let(:like) { build(:like, user: user, post: post) }
+
+  describe 'associations' do
+    it 'belongs to user' do
+      expect(like.user).to eq(user)
+    end
+
+    it 'belongs to post' do
+      expect(like.post).to eq(post)
+    end
+  end
 end
