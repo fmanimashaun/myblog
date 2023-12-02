@@ -45,7 +45,7 @@ gem "bootsnap", require: false
 gem 'rubocop-rails', '~> 2.22', '>= 2.22.2'
 
 # Code style checking for Capybara test files (RSpec, Cucumber, Minitest).
-gem 'rubocop-capybara', '~> 2.19'
+# gem 'rubocop-capybara', '~> 2.19'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
