@@ -42,7 +42,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 # Automatic Rails code style checking tool.
-gem 'rubocop-rails', '~> 2.22', '>= 2.22.2'
+# gem 'rubocop-rails', '~> 2.22', '>= 2.22.2'
 
 # Code style checking for Capybara test files (RSpec, Cucumber, Minitest).
 # gem 'rubocop-capybara', '~> 2.19'
