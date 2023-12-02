@@ -2,19 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   context 'associations' do
-    it 'belongs to author' do
-      association = described_class.reflect_on_association(:author)
-      expect(association.macro).to eq :belongs_to
-    end
-
-    it 'has many comments' do
-      association = described_class.reflect_on_association(:comments)
-      expect(association.macro).to eq :has_many
-    end
-
-    it 'has many likes' do
-      association = described_class.reflect_on_association(:likes)
-      expect(association.macro).to eq :has_many
+    it 'belongs to author, has many comments and has many likes' do
+      author_association = described_class.reflect_on_association(:author)
+      comment_association = described_class.reflect_on_association(:comments)
+      like_association = described_class.reflect_on_association(:likes)
+      expect(author_association.macro).to eq :belongs_to
+      expect(comment_association.macro).to eq :has_many
+      expect(like_association.macro).to eq :has_many
     end
   end
 
