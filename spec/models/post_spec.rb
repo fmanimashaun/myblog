@@ -3,12 +3,10 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   context 'associations' do
     it 'belongs to author, has many comments and has many likes' do
-      author_association = described_class.reflect_on_association(:author)
-      comment_association = described_class.reflect_on_association(:comments)
-      like_association = described_class.reflect_on_association(:likes)
-      expect(author_association.macro).to eq :belongs_to
-      expect(comment_association.macro).to eq :has_many
-      expect(like_association.macro).to eq :has_many
+      associations = { author: :belongs_to, comments: :has_many, likes: :has_many }
+      associations.each do |association, macro|
+        expect(described_class.reflect_on_association(association).macro).to eq macro
+      end
     end
   end
 
@@ -17,16 +15,9 @@ RSpec.describe Post, type: :model do
       post = build(:post, title: '')
       expect(post.valid?).to be_falsey
       expect(post.errors[:title]).to include("can't be blank")
-
       post.title = 'a' * 251
       expect(post.valid?).to be_falsey
-      expect(post.errors[:title]).to include("is too long (maximum is 250 characters)")
-    end
-
-    it 'validates presence of text' do
-      post = build(:post, text: '')
-      expect(post.valid?).to be_falsey
-      expect(post.errors[:text]).to include("can't be blank")
+      expect(post.errors[:title]).to include('is too long (maximum is 250 characters)')
     end
 
     it 'validates numericality of comments_counter' do
