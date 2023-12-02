@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
   let(:user) { create(:user) }
   let(:post) { create(:post) }
-  let(:like) { build(:like, user: user, post: post) }
+  let(:like) { build(:like, user:, post:) }
 
   describe 'associations' do
     it 'belongs to user' do
