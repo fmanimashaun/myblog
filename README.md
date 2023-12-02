@@ -33,26 +33,27 @@
 
 ### Tech Stack <a name="tech-stack"></a>
 
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li>Ruby</li>
-  </ul>
-</details>
+<details> <summary>Programming Language</summary> <ul> <li>Ruby 3.2.2</li> </ul> </details>
 
-<details>
-  <summary>Test Suite</summary>
-  <ul>
-    <li>Rspec</li>
-  </ul>
-</details>
+<details> <summary>Web Application Framework</summary> <ul> <li>Rails 7.1.2</li> </ul> </details>
 
-<details>
-  <summary>Framework Suite</summary>
-  <ul>
-    <li>Rails</li>
-  </ul>
-</details>
+<details> <summary>Database</summary> <ul> <li>PostgreSQL (pg gem)</li> </ul> </details>
+
+<details> <summary>Web Server</summary> <ul> <li>Puma</li> </ul> </details>
+
+<details> <summary>JavaScript Modules</summary> <ul> <li>ESM Import Maps (importmap-rails gem)</li> </ul> </details>
+
+<details> <summary>Hotwire</summary> <ul> <li>Turbo (turbo-rails gem)</li> <li>Stimulus (stimulus-rails gem)</li> </ul> </details>
+
+<details> <summary>APIs</summary> <ul> <li>Jbuilder</li> </ul> </details>
+
+<details> <summary>Performance Optimization</summary> <ul> <li>Bootsnap</li> </ul> </details>
+
+<details> <summary>Testing</summary> <ul> <li>Debug</li> <li>Capybara</li> <li>Selenium Webdriver</li> </ul> </details>
+
+<details> <summary>Code Quality</summary> <ul> <li>Rubocop</li> </ul> </details>
+
+<details> <summary>Development Tools</summary> <ul> <li>Web Console</li> </ul> </details>
 
 <!-- Features -->
 
