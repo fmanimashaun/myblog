@@ -47,7 +47,7 @@
 
 <details> <summary>Performance Optimization</summary> <ul> <li>Bootsnap</li> </ul> </details>
 
-<details> <summary>Testing</summary> <ul> <li>Debug</li> <li>Capybara</li> <li>Selenium Webdriver</li> </ul> </details>
+<details> <summary>Testing</summary> <ul> <li>Debug</li> <li>Capybara</li> <li>Selenium Webdriver</li> <li>RSpec (rspec-rails gem)</li> </ul> </details>
 
 <details> <summary>Code Quality</summary> <ul> <li>Rubocop</li> </ul> </details>
 
@@ -57,8 +57,13 @@
 
 ### Key Feature <a name="key-features"></a>
 
-- [x] **Rails Setup**
-- [x] **Data Model Setup**
+- [x] Rails Setup
+- [x] Data Model Setup
+- [x] Models Created
+- [x] Class Association Implemented
+- [x] Custom Methods Implemented to Fetch and Manipulate Data
+- [x] Models Data Validation Implemented
+- [x] Models Unit Testing Applied
 
 <p align="right"><a href="#readme-top">👆</a></p>
 
