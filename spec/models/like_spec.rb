@@ -14,4 +14,26 @@ RSpec.describe Like, type: :model do
       expect(like.post).to eq(post)
     end
   end
+
+  describe 'counter_cache' do
+    let(:post) { create(:post) }
+    let(:like) { create(:like, post:) }
+
+    context 'when a like is created' do
+      it 'increments likes_counter on post' do
+        expect do
+          like
+        end.to change { post.reload.likes_counter }.by(1)
+      end
+    end
+
+    context 'when a like is destroyed' do
+      it 'decrements likes_counter on post' do
+        like
+        expect do
+          like.destroy
+        end.to change { post.reload.likes_counter }.by(-1)
+      end
+    end
+  end
 end
