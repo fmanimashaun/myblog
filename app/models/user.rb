@@ -10,4 +10,10 @@ class User < ApplicationRecord
   def recent_posts
     posts.order(created_at: :desc).limit(3)
   end
+
+  def update_user_posts_counter
+    return if posts_counter == posts.count
+
+    update_columns(posts_counter: posts.count)
+  end
 end
