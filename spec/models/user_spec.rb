@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#posts_counter' do
+  context 'counter_cache' do
     let(:user) { create(:user) }
 
     it 'updates posts_counter when a post is created' do
