@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :author, class_name: 'User', inverse_of: 'posts'
+  belongs_to :author, class_name: 'User', inverse_of: 'posts', counter_cache: :posts_counter
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
