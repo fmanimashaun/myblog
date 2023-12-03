@@ -47,7 +47,7 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe '#recent_comments' do
+  context '#recent_comments' do
     let(:post) { create(:post) }
     let!(:recent_comment) { create(:comment, post:, created_at: 1.day.ago) }
     let!(:old_comment) { create(:comment, post:, created_at: 1.week.ago) }
@@ -55,6 +55,46 @@ RSpec.describe Post, type: :model do
 
     it 'returns the most recent comments' do
       expect(post.recent_comments.to_a).to eq([recent_comment, old_comment, older_comment])
+    end
+  end
+
+  describe 'counter_cache' do
+    let(:post) { create(:post) }
+
+    context 'when a comment is created' do
+      it 'increments comments_counter' do
+        expect do
+          create(:comment, post:)
+        end.to change { post.reload.comments_counter }.by(1)
+      end
+    end
+
+    context 'when a comment is destroyed' do
+      let!(:comment) { create(:comment, post:) }
+
+      it 'decrements comments_counter' do
+        expect do
+          comment.destroy
+        end.to change { post.reload.comments_counter }.by(-1)
+      end
+    end
+
+    context 'when a like is created' do
+      it 'increments likes_counter' do
+        expect do
+          create(:like, post:)
+        end.to change { post.reload.likes_counter }.by(1)
+      end
+    end
+
+    context 'when a like is destroyed' do
+      let!(:like) { create(:like, post:) }
+
+      it 'decrements likes_counter' do
+        expect do
+          like.destroy
+        end.to change { post.reload.likes_counter }.by(-1)
+      end
     end
   end
 end
