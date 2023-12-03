@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#recent_posts' do
+  context '#recent_posts' do
     let(:user) { create(:user) }
     let!(:recent_post) { create(:post, author: user, created_at: 1.day.ago) }
     let!(:old_post) { create(:post, author: user, created_at: 1.week.ago) }
@@ -47,6 +47,23 @@ RSpec.describe User, type: :model do
 
     it 'returns the most recent posts' do
       expect(user.recent_posts.to_a).to eq([recent_post, old_post, older_post])
+    end
+  end
+
+  context '#posts_counter' do
+    let(:user) { create(:user) }
+
+    it 'updates posts_counter when a post is created' do
+      expect do
+        create(:post, author: user)
+      end.to change { user.reload.posts_counter }.by(1)
+    end
+
+    it 'updates posts_counter when a post is destroyed' do
+      post = create(:post, author: user)
+      expect do
+        post.destroy
+      end.to change { user.reload.posts_counter }.by(-1)
     end
   end
 end
