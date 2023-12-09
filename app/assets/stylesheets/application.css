@@ -61,6 +61,9 @@ ul {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  flex-grow: 1;
+  text-align: left;
+  margin-left: 20px;
 }
 
 .user-info p {
@@ -81,12 +84,6 @@ ul {
   justify-content: space-between;
   width: 80%;
   margin-bottom: 20px;
-}
-
-.user-info {
-  flex-grow: 1;
-  text-align: left;
-  margin-left: 20px;
 }
 
 .bio {
@@ -111,7 +108,7 @@ ul {
   color: inherit;
 }
 
-Button {
+button {
   display: block;
   width: 80%;
   margin-top: 10px;
@@ -123,6 +120,6 @@ Button {
   cursor: pointer;
 }
 
-Button:hover {
+button:hover {
   background-color: #216a94;
 }
