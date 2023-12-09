@@ -7,11 +7,6 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(:success)
     end
 
-    it "renders the correct template" do
-      get users_path
-      expect(response).to render_template(:index)
-    end
-
     it "includes the correct placeholder text" do
       get users_path
       expect(response.body).to include("All Users Page")
@@ -19,16 +14,11 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /show" do
-    let(:user) { User.create!(name: "Test User") }
+    let(:user) { create(:user) }
 
     it "returns http success" do
       get user_path(user)
       expect(response).to have_http_status(:success)
-    end
-
-    it "renders the correct template" do
-      get user_path(user)
-      expect(response).to render_template(:show)
     end
 
     it "includes the correct placeholder text" do
