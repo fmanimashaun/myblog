@@ -10,30 +10,32 @@
     </div>
     </div>
 <div>
-  <ul>
-    <% @posts.each do |post| %>
-      <li>
-        <div class="user-card left">
-          <h3><%= link_to post.title %></h3>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <div class="user-card left">
+        <h3><a href="posts/<%= post.id %>"><%= post.title %></a></h3>
+        <br>
+        <p><%= post.text %></p>
+        <div class="right">
+          <span class="span-post">Comments: <%= post.comments.count %></span>
+          <span class="span-post">Likes: <%= post.likes.count %></span>
+        </div>
+      </div>
+      <div class="user-card left">
+        <ul>
+          <h5>All the Comments:</h5>
           <br>
-          <p><%= post.text %></p>
-          <div class="right">
-            <span class="span-post">Comments: <%= post.comments.count %></span>
-            <span class="span-post">Likes: <%= post.likes.count %></span>
-          </div>
-        </div>
-        <div class="user-card left">
-          <ul>
-            <h5>All the Comments:</h5>
-            <br>
-            <% post.recent_comments.each do |comment| %>
+          <% post.recent_comments.each do |comment| %>
             <li><%= comment.user.name %>: <%= comment.text %></li>
-            <% end %>
-          </ul>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+
 </div>
 </div>
 <%= paginate @posts, param_name: 'page', class: 'button' %>
