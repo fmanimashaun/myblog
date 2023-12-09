@@ -1,80 +1,121 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import 'normalize';
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
 }
 
-h1 {
-  text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  color: #333;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.user-container,
-.post-container {
+ul {
+  list-style: none;
+}
+
+.users-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin-inline: auto;
 }
 
-.user-card,
-.post-card {
+.user-card {
   background-color: #fff;
-  width: 250px;
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: relative;
+  text-decoration: none;
+  color: inherit;
 }
 
-.image-grid,
-.image-container {
-  margin: 0 auto;
+.user-content {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
 }
 
-.image-grid img,
+.image-container  {
+  margin-right: 10px;
+}
+
 .image-container img {
+  display: block;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 3px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
 }
 
-.user-details,
-.post-details {
-  text-align: center;
+.user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-info p {
+  align-self: flex-end;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: auto;
+}
+
+.user-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  flex-grow: 1;
+  text-align: left;
+  margin-left: 20px;
 }
 
 .bio {
+  width: 80%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.user-posts {
+  width: 80%;
+}
+
+.post {
   background-color: #fff;
-  margin: 10px;
+  width: 100%;
+  margin: 10px 0;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  text-decoration: none;
+  color: inherit;
 }
 
-button {
+Button {
   display: block;
-  width: 100%;
+  width: 80%;
   margin-top: 10px;
   background-color: #3091c8;
   color: #fff;
@@ -84,6 +125,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+Button:hover {
   background-color: #216a94;
 }

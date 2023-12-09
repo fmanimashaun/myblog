@@ -1,4 +1,3 @@
-<h1>Single User Page</h1>
 <% if flash[:alert] %>
   <p><%= flash[:alert] %></p>
 <% else %>
@@ -6,7 +5,7 @@
   <div class="user-header">
     <!-- Display user photo, name, and number of posts -->
     <div class="image-container">
-      <%= image_tag @user.photo, width: '100', height: '100', alt: "#{@user.name}'s photo" %>
+      <%= image_tag @user.photo, alt: "#{@user.name}'s photo" %>
     </div>
     <div class="user-info">
       <h2><%= @user.name %></h2>
@@ -22,16 +21,18 @@
   <!-- Display three most recent posts -->
   <div class="user-posts">
     <% @user.recent_posts.each do |post| %>
-      <div class="post">
-        <h3><%= post.title %></h3>
-        <p><%= post.text %></p>
-        <p>Comments: <%= post.comments_counter %></p>
-        <p>Likes: <%= post.likes_counter %></p>
-      </div>
+      <a href="<%= @user.id %>/posts/<%= post.id %>">
+        <div class="post">
+          <h3><%= post.title %></h3>
+          <p><%= post.text %></p>
+          <p>Comments: <%= post.comments_counter %></p>
+          <p>Likes: <%= post.likes_counter %></p>
+        </div>
+      </a>
     <% end %>
   </div>
 
   <!-- Button to see all posts -->
- <Button>see all posts</Button>
+ <a href="<%= @user.id %>/posts">see all posts</a>
 </div>
 <% end %>
