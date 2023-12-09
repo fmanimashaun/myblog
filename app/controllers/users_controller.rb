@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     # placeholder for index logic
     @users = User.all
+    puts @users
   end
 
   def show
