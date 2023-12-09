@@ -47,6 +47,9 @@ gem 'bootsnap', require: false
 # rails-controller-testing provides ActionController::TestCase-like API for ActionDispatch::IntegrationTest
 gem 'rails-controller-testing'
 
+# add pagination library
+gem 'kaminari'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
