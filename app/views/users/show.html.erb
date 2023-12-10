@@ -2,38 +2,38 @@
 <% if flash[:alert] %>
   <p><%= flash[:alert] %></p>
 <% else %>
-<div class="user-details">
-  <div class="user-header">
-    <!-- Display user photo, name, and number of posts -->
-    <div class="image-container">
-      <%= image_tag @user.photo, alt: "#{@user.name}'s photo" %>
+  <div class="user-details">
+    <div class="user-header">
+      <!-- Display user photo, name, and number of posts -->
+      <div class="image-container">
+        <%= image_tag @user.photo, alt: "#{@user.name}'s photo" %>
+      </div>
+      <div class="user-info">
+        <h2><%= @user.name %></h2>
+        <p>Number of posts: <%= @user.posts_counter %></p>
+      </div>
     </div>
-    <div class="user-info">
-      <h2><%= @user.name %></h2>
-      <p>Number of posts: <%= @user.posts_counter %></p>
+
+    <!-- Display user bio -->
+    <div class="bio">
+      <p><%= @user.bio %></p>
     </div>
-  </div>
 
-  <!-- Display user bio -->
-  <div class="bio">
-    <p><%= @user.bio %></p>
-  </div>
+    <!-- Display three most recent posts -->
+    <div class="user-posts">
+      <% @user.recent_posts.each do |post| %>
+        <a href="<%= @user.id %>/posts/<%= post.id %>">
+          <div class="post">
+            <h3><%= post.title %></h3>
+            <p><%= post.text %></p>
+            <p>Comments: <%= post.comments_counter %></p>
+            <p>Likes: <%= post.likes_counter %></p>
+          </div>
+        </a>
+      <% end %>
+    </div>
 
-  <!-- Display three most recent posts -->
-  <div class="user-posts">
-    <% @user.recent_posts.each do |post| %>
-      <a href="<%= @user.id %>/posts/<%= post.id %>">
-        <div class="post">
-          <h3><%= post.title %></h3>
-          <p><%= post.text %></p>
-          <p>Comments: <%= post.comments_counter %></p>
-          <p>Likes: <%= post.likes_counter %></p>
-        </div>
-      </a>
-    <% end %>
+    <!-- Button to see all posts -->
+    <a href="<%= @user.id %>/posts">see all posts</a>
   </div>
-
-  <!-- Button to see all posts -->
- <a href="<%= @user.id %>/posts">see all posts</a>
-</div>
 <% end %>
