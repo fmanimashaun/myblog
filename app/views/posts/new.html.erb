@@ -1,10 +1,10 @@
 <h1>Create New Post</h1>
-<%= form_for current_user.posts.build, url: posts_path do |f| %>
+<%= form_with model: current_user.posts.build, url: posts_path do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, required: true %>
 
   <%= f.label :text %>
-  <%= f.text_area :text %>
+  <%= f.text_area :text, required: true %>
 
-  <%= f.submit 'Create Post' %>
+  <%= f.submit 'Create Post', data: { disable_with: 'Creating...' } %>
 <% end %>

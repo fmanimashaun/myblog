@@ -1,4 +1,4 @@
-require 'kaminari'
+require "kaminari"
 
 class PostsController < ApplicationController
   def index
@@ -13,11 +13,15 @@ class PostsController < ApplicationController
     @user = @post.author
   end
 
+  def new
+    @post = current_user.posts.build
+  end
+
   def create
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @post, notice: "Post was successfully created."
     else
       render :new
     end
