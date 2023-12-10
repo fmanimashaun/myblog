@@ -1,5 +1,5 @@
 <h1>Create New Post</h1>
-<%= form_with model: current_user.posts.build, url: posts_path do |f| %>
+<%= form_with model: current_user.posts.build, url:  user_posts_path(current_user) do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title, required: true %>
 
