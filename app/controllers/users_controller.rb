@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def index
-    # placeholder index action
+    @users = User.order(:id)
   end
 
   def show
-    # placeholder show action
+    @user = User.find_by(id: params[:id])
+    flash[:alert] = 'User not found' if @user.nil?
   end
 end

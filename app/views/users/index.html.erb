@@ -1,6 +1,18 @@
 <h1>All Users Page</h1>
-<ul>
-    <li>User 1</li>
-    <li>User 2</li>
-    <li>User 3</li>
-</ul>
+<div class="users-container">
+  <% @users.each do |user| %>
+    <a href="/users/<%= user.id %>">
+      <div class="user-card">
+        <div class="user-content">
+          <div class="image-container">
+            <%= image_tag(user.photo, alt: "#{user.name}'s photo") %>
+          </div>
+          <div class="user-info">
+            <h2><%= user.name %></h2>
+            <p>Number of posts: <%= user.posts_counter %></p>
+          </div>
+        </div>
+      </div>
+    </a>
+  <% end %>
+</div>
