@@ -1,10 +1,11 @@
-<%= form_with model: [@user, @post, @comment], url: user_post_comments_path(@user, @post), local: true do |f| %>
+<%= form_for [@user, @post, comment], url: user_post_comments_path(@user, @post), method: :post do |f| %>
   <div>
     <%= f.label :Comment %>
     <%= f.text_area :text %>
   </div>
 
   <div>
+    <%= f.hidden_field :authenticity_token, value: form_authenticity_token %>
     <%= f.submit 'Create Comment' %>
   </div>
 <% end %>
