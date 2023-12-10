@@ -1,4 +1,3 @@
-# posts_controller.rb
 require 'kaminari'
 
 class PostsController < ApplicationController
