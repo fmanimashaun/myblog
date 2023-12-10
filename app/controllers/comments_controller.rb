@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.user = @user
 
     if @comment.save
-      redirect_to user_post_path(@user, @post), notice: "Comment added!"
+      redirect_to user_post_path(@user, @post), notice: 'Comment added!'
     else
       render :new
     end
