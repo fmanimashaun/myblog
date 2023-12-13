@@ -22,18 +22,18 @@
     <!-- Display three most recent posts -->
     <div class="user-posts">
       <% @user.recent_posts.each do |post| %>
-        <a href="<%= @user.id %>/posts/<%= post.id %>">
+        <%= link_to  user_post_path(@user,post) do %>
           <div class="post">
             <h3><%= post.title %></h3>
             <p><%= post.text %></p>
             <p>Comments: <%= post.comments_counter %></p>
             <p>Likes: <%= post.likes_counter %></p>
           </div>
-        </a>
+        <% end %>
       <% end %>
     </div>
 
     <!-- Button to see all posts -->
-    <a href="<%= @user.id %>/posts">see all posts</a>
+    <%= link_to "See all posts", user_posts_path(@user) %>
   </div>
 <% end %>
