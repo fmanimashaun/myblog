@@ -35,10 +35,14 @@
           <h3 class="m-0"><%= post.title %></h3>
         <% end %>
         <p class="m-0"><%= post.text %></p>
-        <p class="flex m-0 self-end">
-          <span class="m-0">Comments: <%= post.comments_counter %></span>,
-          <span class="m-0">Likes: <%= post.likes_counter %></span>
-        </p>
+        <div class="flex gap-2 self-end">
+            <p class="m-0">
+              <span class="m-0">Comments: <%= post.comments_counter %></span>,
+            </p>
+            <%= button_to user_post_likes_path(@user, post), method: :post do %>
+              <span class="m-0">Likes: <%= post.likes_counter %></span>
+            <% end %>
+          </div>
       </div>
     <% end %>
   </div>

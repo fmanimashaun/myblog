@@ -1,16 +1,21 @@
 <div class="flex flex-col gap-2 my-5">
   <%=
     link_to '< Back to all posts',
-             user_posts_path(@user),
+            user_posts_path(@user),
             class:
               'py-2 px-4 rounded no-underline self-end border border-black shadow-black p-2 rounded hover:shadow-none'
   %>
   <div class="flex flex-col border border-black border-solid">
     <h3 class="m-0"><%= @post.title %> by <%= @user.name %></h3>
-    <p class="self-end m-0">
-      <span class="">Comments: <%= @post.comments.count %></span>,
-      <span class="">Likes: <%= @post.likes.count %></span>
-    </p>
+
+    <div class="flex gap-2 self-end">
+      <p class="m-0">
+        <span class="m-0">Comments: <%= @post.comments.count %></span>,
+      </p>
+      <%= button_to user_post_likes_path(@user, @post), method: :post do %>
+        <span class="m-0">Likes: <%= @post.likes.count %></span>
+      <% end %>
+    </div>
     <p class="mx-0 mt-2 mb-0"><%= @post.text %></p>
   </div>
   <%=

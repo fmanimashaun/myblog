@@ -1,4 +1,10 @@
 <div class="flex flex-col items-center gap-5 my-5">
+  <%=
+    link_to '< Back to users profile',
+            user_path(@user),
+            class:
+              'py-2 px-4 rounded no-underline self-end border border-black shadow-black p-2 rounded hover:shadow-none'
+  %>
   <figure class="m-0 flex gap-5 w-full">
     <%=
       image_tag(
@@ -24,10 +30,14 @@
             <h3 class="m-0"><%= post.title %></h3>
           <% end %>
           <p class="m-0"><%= post.text %></p>
-          <p class="flex m-0 self-end">
-            <span class="m-0">Comments: <%= post.comments_counter %></span>,
-            <span class="m-0">Likes: <%= post.likes_counter %></span>
-          </p>
+          <div class="flex gap-2 self-end">
+            <p class="m-0">
+              <span class="m-0">Comments: <%= post.comments_counter %></span>,
+            </p>
+            <%= button_to user_post_likes_path(@user, post), method: :post do %>
+              <span class="m-0">Likes: <%= post.likes_counter %></span>
+            <% end %>
+          </div>
         </div>
 
         <% unless post.recent_comments.empty? %>
