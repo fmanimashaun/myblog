@@ -1,11 +1,12 @@
 class LikesController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
+    @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:post_id])
     @like = @post.likes.build(user: current_user)
     if @like.save
-      redirect_to user_post_path(@post.user, @post), notice: 'Liked!'
+      redirect_to request.referrer, notice: 'Liked!'
     else
-      redirect_to user_post_path(@post.user, @post), alert: 'Unable to like.'
+      redirect_to request.referrer, alert: 'Unable to like.'
     end
   end
 end

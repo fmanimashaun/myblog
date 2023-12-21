@@ -1,21 +1,39 @@
-<h1>Single Post Page</h1>
-<div>
-  <div class="user-card left">
-    <h3><%= @post.title %> by <%= @user.name %></h3>
-    <div class="right">
-      <span class="span-post">Comments: <%= @post.comments.count %></span>
-      <span class="span-post">Likes: <%= @post.likes.count %></span>
-    </div>
-    <br />
-    <p><%= @post.text %></p>
-  </div>
-  <div class="user-card left">
-    <ul>
-      <h5>All the Comments:</h5>
-      <br />
-      <% @post.comments.each do |comment| %>
-        <li><%= comment.user.name %>: <%= comment.text %></li>
+<div class="flex flex-col gap-2 my-5">
+  <%=
+    link_to '< Back to all posts',
+            user_posts_path(@user),
+            class:
+              'py-2 px-4 rounded no-underline self-end border border-black shadow-black p-2 rounded hover:shadow-none'
+  %>
+  <div class="flex flex-col border border-black border-solid">
+    <h3 class="m-0"><%= @post.title %> by <%= @user.name %></h3>
+
+    <div class="flex gap-2 self-end">
+      <p class="m-0">
+        <span class="m-0">Comments: <%= @post.comments.count %></span>,
+      </p>
+      <%= button_to user_post_likes_path(@user, @post), method: :post do %>
+        <span class="m-0">Likes: <%= @post.likes.count %></span>
       <% end %>
-    </ul>
+    </div>
+    <p class="mx-0 mt-2 mb-0"><%= @post.text %></p>
   </div>
+  <%=
+    link_to 'Add comment',
+            new_user_post_comment_path(@user, @post),
+            class:
+              'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none self-end'
+  %>
+  <% unless @post.comments.empty? %>
+    <div class="flex flex-col border border-black border-solid">
+      <h5 class="font-bold">All the Comments:</h5>
+      <% @post.comments.each do |comment| %>
+        <p class="m-0">
+          <span class="font-bold"><%= comment.user.name %>:</span> <%=
+            comment.text
+          %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
 </div>

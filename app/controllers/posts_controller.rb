@@ -5,7 +5,12 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
 
     # Catch all the posts associates to this user and paginate them
-    @posts = Post.where(author: @user).page(params[:page]).per(3)
+    @posts =
+      Post
+        .where(author: @user)
+        .order(created_at: :desc)
+        .page(params[:page])
+        .per(3)
   end
 
   def show
@@ -21,7 +26,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to user_posts_path(current_user), notice: 'Post was successfully created.'
+      redirect_to user_posts_path(current_user),
+                  notice: 'Post was successfully created.'
     else
       render :new
     end

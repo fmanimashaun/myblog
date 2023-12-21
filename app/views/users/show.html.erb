@@ -1,39 +1,57 @@
-<h1>Single User Page</h1>
-<% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
-<% else %>
-  <div class="user-details">
-    <div class="user-header">
-      <!-- Display user photo, name, and number of posts -->
-      <div class="image-container">
-        <%= image_tag @user.photo, alt: "#{@user.name}'s photo" %>
-      </div>
-      <div class="user-info">
-        <h2><%= @user.name %></h2>
-        <p>Number of posts: <%= @user.posts_counter %></p>
-      </div>
-    </div>
+<div class="flex flex-col items-center gap-5 my-5">
+  <%=
+    link_to '< Home',
+            root_path,
+            class:
+              'py-2 px-4 rounded no-underline self-end border border-black shadow-black p-2 rounded hover:shadow-none'
+  %>
+  <figure class="m-0 flex gap-5 w-full">
+    <%=
+      image_tag(
+        @user.photo,
+        alt: "#{@user.name}'s photo",
+        class: 'w-16 h-16 rounded-full m-0 border border-black border-solid',
+      )
+    %>
+    <figcaption
+      class="m-0  flex items-center justify-between border border-black border-solid flex-grow"
+    >
+      <h2 class="m-0"><%= @user.name %></h2>
+      <p class="m-0 self-end">Number of posts: <%= @user.posts_counter %></p>
+    </figcaption>
+  </figure>
 
-    <!-- Display user bio -->
-    <div class="bio">
-      <p><%= @user.bio %></p>
-    </div>
-
-    <!-- Display three most recent posts -->
-    <div class="user-posts">
-      <% @user.recent_posts.each do |post| %>
-        <a href="<%= @user.id %>/posts/<%= post.id %>">
-          <div class="post">
-            <h3><%= post.title %></h3>
-            <p><%= post.text %></p>
-            <p>Comments: <%= post.comments_counter %></p>
-            <p>Likes: <%= post.likes_counter %></p>
-          </div>
-        </a>
-      <% end %>
-    </div>
-
-    <!-- Button to see all posts -->
-    <a href="<%= @user.id %>/posts">see all posts</a>
+  <!-- Display user bio -->
+  <div class="border border-black border-solid">
+    <h3 class="m-0">Bio</h3>
+    <p class="mb-0"><%= @user.bio %></p>
   </div>
-<% end %>
+
+  <!-- Display three most recent posts -->
+  <div class="flex flex-col gap-5">
+    <% @user.recent_posts.each do |post| %>
+      <div class="flex flex-col gap-2 border border-black border-solid">
+        <%= link_to  user_post_path(@user,post), class: 'no-underline m-0' do %>
+          <h3 class="m-0"><%= post.title %></h3>
+        <% end %>
+        <p class="m-0"><%= post.text %></p>
+        <div class="flex gap-2 self-end">
+            <p class="m-0">
+              <span class="m-0">Comments: <%= post.comments_counter %></span>,
+            </p>
+            <%= button_to user_post_likes_path(@user, post), method: :post do %>
+              <span class="m-0">Likes: <%= post.likes_counter %></span>
+            <% end %>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Button to see all posts -->
+  <%=
+    link_to 'See all posts',
+            user_posts_path(@user),
+            class:
+              'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+  %>
+</div>

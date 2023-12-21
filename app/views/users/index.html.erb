@@ -1,18 +1,22 @@
-<h1>All Users Page</h1>
-<div class="users-container">
+<div class="flex flex-col my-5 gap-5">
   <% @users.each do |user| %>
-    <a href="/users/<%= user.id %>">
-      <div class="user-card">
-        <div class="user-content">
-          <div class="image-container">
-            <%= image_tag(user.photo, alt: "#{user.name}'s photo") %>
-          </div>
-          <div class="user-info">
-            <h2><%= user.name %></h2>
-            <p>Number of posts: <%= user.posts_counter %></p>
-          </div>
-        </div>
-      </div>
-    </a>
+    <figure class="m-0 flex gap-5">
+      <%=
+        image_tag(
+          user.photo,
+          alt: "#{user.name}'s photo",
+          class:
+            'w-16 h-16 rounded-full m-0 border border-black border-solid',
+        )
+      %>
+      <figcaption
+        class="m-0  flex items-center justify-between border border-black border-solid flex-grow"
+      >
+        <%= link_to user, class: 'no-underline m-0' do %>
+          <h2 class="m-0"><%= user.name %></h2>
+        <% end %>
+        <p class="m-0 self-end">Number of posts: <%= user.posts_counter %></p>
+      </figcaption>
+    </figure>
   <% end %>
 </div>

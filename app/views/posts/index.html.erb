@@ -1,43 +1,58 @@
-<h1>All Posts Page</h1>
-<div class="users-container">
-  <div class="user-header">
-    <!-- Display user photo, name, and number of posts -->
-    <div class="image-container">
-      <%= image_tag @user.photo, alt: "#{@user.name}'s photo" %>
-    </div>
-    <div class="user-info">
-      <h2><%= @user.name %></h2>
-      <p>Number of posts: <%= @user.posts_counter %></p>
-    </div>
-  </div>
-  <div>
-    <ul>
-      <% @posts.each do |post| %>
-        <li>
-          <div class="user-card left">
-            <h3>
-              <a href="posts/<%= post.id %>"><%= post.title %></a>
-            </h3>
-            <br />
-            <p><%= post.text %></p>
-            <div class="right">
-              <span class="span-post"
-                >Comments: <%= post.comments.count %></span>
-              <span class="span-post">Likes: <%= post.likes.count %></span>
-            </div>
+<div class="flex flex-col items-center gap-5 my-5">
+  <%=
+    link_to '< Back to users profile',
+            user_path(@user),
+            class:
+              'py-2 px-4 rounded no-underline self-end border border-black shadow-black p-2 rounded hover:shadow-none'
+  %>
+  <figure class="m-0 flex gap-5 w-full">
+    <%=
+      image_tag(
+        @user.photo,
+        alt: "#{@user.name}'s photo",
+        class: 'w-16 h-16 rounded-full m-0 border border-black border-solid',
+      )
+    %>
+    <figcaption
+      class="m-0  flex items-center justify-between border border-black border-solid flex-grow"
+    >
+      <h2 class="m-0"><%= @user.name %></h2>
+      <p class="m-0 self-end">Number of posts: <%= @user.posts_counter %></p>
+    </figcaption>
+  </figure>
+
+  <!-- Display posts list -->
+  <div class="flex flex-col gap-5">
+    <% @posts.each do |post| %>
+      <div class="flex flex-col gap-1 border border-black border-solid">
+        <div class="flex flex-col gap-2 border border-black border-solid">
+          <%= link_to  user_post_path(@user,post), class: 'no-underline m-0' do %>
+            <h3 class="m-0"><%= post.title %></h3>
+          <% end %>
+          <p class="m-0"><%= post.text %></p>
+          <div class="flex gap-2 self-end">
+            <p class="m-0">
+              <span class="m-0">Comments: <%= post.comments_counter %></span>,
+            </p>
+            <%= button_to user_post_likes_path(@user, post), method: :post do %>
+              <span class="m-0">Likes: <%= post.likes_counter %></span>
+            <% end %>
           </div>
-          <div class="user-card left">
-            <ul>
-              <h5>All the Comments:</h5>
-              <br />
-              <% post.recent_comments.each do |comment| %>
-                <li><%= comment.user.name %>: <%= comment.text %></li>
-              <% end %>
-            </ul>
+        </div>
+
+        <% unless post.recent_comments.empty? %>
+          <div class="flex flex-col border border-black border-solid">
+            <% post.recent_comments.each do |comment| %>
+              <p class="m-0">
+                <span class="font-bold"><%= comment.user.name %>:</span> <%=
+                  comment.text
+                %>
+              </p>
+            <% end %>
           </div>
-        </li>
-      <% end %>
-    </ul>
+        <% end %>
+      </div>
+    <% end %>
   </div>
+  <%= paginate @posts, param_name: 'page' %>
 </div>
-<%= paginate @posts, param_name: 'page', class: 'button' %>
