@@ -1,10 +1,42 @@
-<h1>Create New Post</h1>
-<%= form_with model: current_user.posts.build, url:  user_posts_path(current_user) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title, required: true %>
+<div class="flex flex-col my-5 gap-5">
+  <h1 class="text-xl font-bold m-0">Create New Post</h1>
+  <%= form_with model: current_user.posts.build, url:  user_posts_path(current_user), class: "space-y-4" do |f| %>
+    <div class="flex flex-col">
+      <%= f.label :title, class: 'block font-medium' %>
+      <%=
+        f.text_field :title,
+                     required: true,
+                     class:
+                       'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black'
+      %>
+    </div>
 
-  <%= f.label :text %>
-  <%= f.text_area :text, required: true %>
+    <div class="flex flex-col">
+      <%= f.label :text, class: 'block font-medium' %>
+      <%=
+        f.text_area :text,
+                    required: true,
+                    class:
+                      'mt-1 block w-full rounded-md border border-black shadow-sm focus:border-black'
+      %>
+    </div>
 
-  <%= f.submit 'Create Post', data: { disable_with: 'Creating...' } %>
-<% end %>
+<div class="flex gap-5">
+    <%=
+      f.submit 'Create Post',
+               data: {
+                 disable_with: 'Creating...',
+               },
+               class:
+                 'w-1/2 no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
+
+    <%=
+      link_to 'Back',
+              user_posts_path(current_user),
+              class:
+                'flex justify-center w-1/2 no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+    %>
+    </div>
+  <% end %>
+</div>

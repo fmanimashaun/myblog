@@ -1,5 +1,10 @@
 <div class="flex flex-col items-center gap-5 my-5">
-<%= link_to "< Home", root_path, class: "py-2 px-4 rounded no-underline self-end border border-black shadow-black p-2 rounded hover:shadow-none" %>
+  <%=
+    link_to '< Home',
+            root_path,
+            class:
+              'py-2 px-4 rounded no-underline self-end border border-black shadow-black p-2 rounded hover:shadow-none'
+  %>
   <figure class="m-0 flex gap-5 w-full">
     <%=
       image_tag(
@@ -31,13 +36,18 @@
         <% end %>
         <p class="m-0"><%= post.text %></p>
         <p class="flex m-0 self-end">
-        <span class="m-0">Comments: <%= post.comments_counter %></span>,
-        <span class="m-0">Likes: <%= post.likes_counter %></span>
+          <span class="m-0">Comments: <%= post.comments_counter %></span>,
+          <span class="m-0">Likes: <%= post.likes_counter %></span>
         </p>
       </div>
     <% end %>
   </div>
 
   <!-- Button to see all posts -->
-  <%= link_to 'See all posts', user_posts_path(@user), class: "no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none" %>
+  <%=
+    link_to 'See all posts',
+            user_posts_path(@user),
+            class:
+              'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none cursor-pointer'
+  %>
 </div>
