@@ -18,6 +18,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    authorize! :destroy, @comment
+
+    if @comment.destroy
+      redirect_to request.referrer, notice: 'Comment was successfully removed.'
+    else
+      redirect_to request.referrer, alert: 'There was an issue removing the comment.'
+    end
+  end
+
   private
 
   def comment_params

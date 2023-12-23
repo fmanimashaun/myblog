@@ -6,7 +6,7 @@ class Ability
 
     can :read, :all
     can :manage, Post, author_id: user.id
-    can :manage, Comment, author_id: user.id
+    can :manage, Comment, user_id: user.id
 
     return unless user.admin?
 
