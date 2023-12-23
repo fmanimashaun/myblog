@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center gap-5 my-5">
+<div class="flex flex-col gap-5 my-5">
   <%=
     link_to '< Home',
             root_path,
@@ -26,6 +26,13 @@
     <h3 class="m-0">Bio</h3>
     <p class="mb-0"><%= @user.bio %></p>
   </div>
+
+  <%=
+    link_to 'Add Post',
+            new_user_post_path(@user, @post),
+            class:
+              'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none self-end'
+  %>
 
   <!-- Display three most recent posts -->
   <div class="flex flex-col gap-5">

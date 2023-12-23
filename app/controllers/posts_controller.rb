@@ -1,4 +1,4 @@
-require 'kaminari'
+require "kaminari"
 
 class PostsController < ApplicationController
   def index
@@ -28,9 +28,19 @@ class PostsController < ApplicationController
 
     if @post.save
       redirect_to user_posts_path(current_user),
-                  notice: 'Post was successfully created.'
+                  notice: "Post was successfully created."
     else
       render :new
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    authorize! :destroy, @post
+    if @post.destroy
+      redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
+    else
+      redirect_to user_posts_path(current_user), alert: 'Error deleting post.'
     end
   end
 
@@ -39,15 +49,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :text)
   end
-
- def destroy
-     @post = Post.find(params[:id])
-     if @post.author == current_user || current_user.admin?
-       @post.destroy
-       redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
-     else
-       redirect_to user_posts_path(current_user), alert: 'You do not have permission to delete this post.'
-     end
-   end
-
 end

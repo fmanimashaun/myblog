@@ -18,12 +18,24 @@
     </div>
     <p class="mx-0 mt-2 mb-0"><%= @post.text %></p>
   </div>
-  <%=
-    link_to 'Add comment',
-            new_user_post_comment_path(@user, @post),
-            class:
-              'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none self-end'
-  %>
+  <div class="flex justify-between">
+    <%=
+      link_to 'Add comment',
+              new_user_post_comment_path(@user, @post),
+              class:
+                'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none self-end'
+    %>
+
+    <% if can? :destroy, @post %>
+      <%=
+        button_to 'Delete',
+                  user_post_path(@user, @post),
+                  method: :delete,
+                  class:
+                    'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none self-end'
+      %>
+    <% end %>
+  </div>
   <% unless @post.comments.empty? %>
     <div class="flex flex-col border border-black border-solid">
       <h5 class="font-bold">All the Comments:</h5>
