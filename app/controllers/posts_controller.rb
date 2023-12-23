@@ -39,4 +39,15 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :text)
   end
+
+ def destroy
+     @post = Post.find(params[:id])
+     if @post.author == current_user || current_user.admin?
+       @post.destroy
+       redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
+     else
+       redirect_to user_posts_path(current_user), alert: 'You do not have permission to delete this post.'
+     end
+   end
+
 end
