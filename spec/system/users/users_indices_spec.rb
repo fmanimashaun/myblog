@@ -12,7 +12,7 @@ RSpec.describe 'UserIndices', type: :system do
         name: 'Jerry',
         photo: 'https://unsplash.com/photos/another_photo',
         bio: 'Engineer from Canada.',
-        posts_counter: 5,
+        posts_counter: 5
       )
   end
 

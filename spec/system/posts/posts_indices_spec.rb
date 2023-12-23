@@ -5,7 +5,7 @@ RSpec.describe 'UserPostsIndex', type: :system do
     driven_by(:rack_test)
 
     @user = FactoryBot.create(:user)
-    create_list(:post, 10, author: @user)  # Create 10 posts for pagination
+    create_list(:post, 10, author: @user) # Create 10 posts for pagination
   end
 
   it 'displays user information and posts correctly' do
@@ -19,14 +19,12 @@ RSpec.describe 'UserPostsIndex', type: :system do
     # Post display
     @user.posts.each do |post|
       expect(page).to have_content(post.title)
-      expect(page).to have_content(post.text.truncate(250))  # Check partial body
+      expect(page).to have_content(post.text.truncate(250)) # Check partial body
       expect(page).to have_content(post.comments_counter)
       expect(page).to have_content(post.likes_counter)
 
       # Check first comment if present
-      unless post.recent_comments.empty?
-        expect(page).to have_content(post.recent_comments.first.text)
-      end
+      expect(page).to have_content(post.recent_comments.first.text) unless post.recent_comments.empty?
     end
 
     # Pagination

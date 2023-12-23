@@ -6,7 +6,7 @@ RSpec.describe 'PostShow', type: :system do
 
     @user = FactoryBot.create(:user)
     @post = FactoryBot.create(:post, author: @user)
-    create_list(:comment, 3, post: @post)  # Create comments for the post
+    create_list(:comment, 3, post: @post) # Create comments for the post
   end
 
   it 'displays post information and comments correctly' do
