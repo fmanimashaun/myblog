@@ -78,3 +78,5 @@ end
 gem 'tailwindcss-rails', '~> 2.1'
 
 gem 'cancancan'
+
+gem "devise", "~> 4.9"
