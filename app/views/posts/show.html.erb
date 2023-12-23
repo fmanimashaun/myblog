@@ -46,16 +46,18 @@
               comment.text
             %>
           </p>
-          <%=
-            button_to 'Delete',
-                      user_post_comment_path(@user, @post, comment),
-                      method: :delete,
-                      data: {
-                        confirm: 'Are you sure?',
-                      },
-                      class:
-                        'border border-black shadow-black rounded hover:shadow-none'
-          %>
+          <% if can? :destroy, comment %>
+            <%=
+              button_to 'Delete',
+                        user_post_comment_path(@user, @post, comment),
+                        method: :delete,
+                        data: {
+                          confirm: 'Are you sure?',
+                        },
+                        class:
+                          'border border-black shadow-black rounded hover:shadow-none'
+            %>
+          <% end %>
         </div>
       <% end %>
     </div>
