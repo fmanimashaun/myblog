@@ -9,8 +9,8 @@ class User < ApplicationRecord
          :validatable,
          :confirmable
   has_many :posts,
-           foreign_key: "author_id",
-           inverse_of: "author",
+           foreign_key: 'author_id',
+           inverse_of: 'author',
            dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
