@@ -10,10 +10,10 @@
 
     <div class="flex gap-2 self-end">
       <p class="m-0">
-        <span class="m-0">Comments: <%= @post.comments.count %></span>,
+        <span class="m-0">Comments: <%= @post.comments_counter %></span>,
       </p>
       <%= button_to user_post_likes_path(@user, @post), method: :post do %>
-        <span class="m-0">Likes: <%= @post.likes.count %></span>
+        <span class="m-0">Likes: <%= @post.likes_counter %></span>
       <% end %>
     </div>
     <p class="mx-0 mt-2 mb-0"><%= @post.text %></p>

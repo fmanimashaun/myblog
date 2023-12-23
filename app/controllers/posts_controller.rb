@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     # Catch all the posts associates to this user and paginate them
     @posts =
       Post
+        .includes(comments: :user)
         .where(author: @user)
         .order(created_at: :desc)
         .page(params[:page])
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(comments: :user).find(params[:id])
     @user = @post.author
   end
 
