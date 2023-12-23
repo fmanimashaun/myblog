@@ -1,4 +1,4 @@
-require "kaminari"
+require 'kaminari'
 
 class PostsController < ApplicationController
   def index
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
     if @post.save
       redirect_to user_posts_path(current_user),
-                  notice: "Post was successfully created."
+                  notice: 'Post was successfully created.'
     else
       render :new
     end
