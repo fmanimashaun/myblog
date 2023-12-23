@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   # set the root of the site to the index action of the users controller
   root "users#index"
 
