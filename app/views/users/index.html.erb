@@ -3,10 +3,9 @@
     <figure class="m-0 flex gap-5">
       <%=
         image_tag(
-          user.photo,
+          user.photo.presence || 'placeholder.png',
           alt: "#{user.name}'s photo",
-          class:
-            'w-16 h-16 rounded-full m-0 border border-black border-solid',
+          class: 'w-16 h-16 rounded-full m-0 border border-black border-solid',
         )
       %>
       <figcaption
