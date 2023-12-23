@@ -1,4 +1,4 @@
-require 'kaminari'
+require "kaminari"
 
 class PostsController < ApplicationController
   def index
@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     # Catch all the posts associates to this user and paginate them
     @posts =
       Post
+        .includes(comments: :user)
         .where(author: @user)
         .order(created_at: :desc)
         .page(params[:page])
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(comments: :user).find(params[:id])
     @user = @post.author
   end
 
@@ -27,7 +28,7 @@ class PostsController < ApplicationController
 
     if @post.save
       redirect_to user_posts_path(current_user),
-                  notice: 'Post was successfully created.'
+                  notice: "Post was successfully created."
     else
       render :new
     end
