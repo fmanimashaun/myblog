@@ -1,6 +1,8 @@
 require 'kaminari'
 
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @user = User.find(params[:user_id])
 
@@ -31,6 +33,16 @@ class PostsController < ApplicationController
                   notice: 'Post was successfully created.'
     else
       render :new
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    authorize! :destroy, @post
+    if @post.destroy
+      redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
+    else
+      redirect_to user_posts_path(current_user), alert: 'Error deleting post.'
     end
   end
 

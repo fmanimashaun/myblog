@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center gap-5 my-5">
+<div class="flex flex-col gap-5 my-5">
   <%=
     link_to '< Back to users profile',
             user_path(@user),
@@ -8,7 +8,7 @@
   <figure class="m-0 flex gap-5 w-full">
     <%=
       image_tag(
-        @user.photo,
+        @user.photo.presence || 'placeholder.png',
         alt: "#{@user.name}'s photo",
         class: 'w-16 h-16 rounded-full m-0 border border-black border-solid',
       )
@@ -20,6 +20,13 @@
       <p class="m-0 self-end">Number of posts: <%= @user.posts_counter %></p>
     </figcaption>
   </figure>
+
+  <%=
+    link_to 'Add Post',
+            new_user_post_path(@user, @post),
+            class:
+              'no-underline m-0 border border-black shadow-black p-2 rounded hover:shadow-none self-end'
+  %>
 
   <!-- Display posts list -->
   <div class="flex flex-col gap-5">

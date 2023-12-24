@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   # redirect /users/:id to the show action of the users controller
   resources :users, only: [:show] do
-    resources :posts, only: %i[index show new create] do
-      resources :comments, only: %i[new create]
+    resources :posts, only: %i[index show new create destroy] do
+      resources :comments, only: %i[new create destroy]
       resources :likes, only: [:create]
     end
   end
